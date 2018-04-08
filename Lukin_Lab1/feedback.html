@@ -1,0 +1,97 @@
+<!doctype HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Feedback - LOO-WORLDS</title>
+        <link rel="stylesheet" href="style/style.css" />
+        <script>
+            window.onload = function() {
+            var topMenu = document.getElementById("topMenu");
+            
+            };
+
+            document.onclick = function(event) {
+                var target = event.target;
+
+                while (target != document) {
+                    if(target.id === "topMenuHamburger") {
+                        showMenu();
+                        return
+                    } else {
+                        target = target.parentNode;
+                    }
+                }
+                hideMenu();
+            }
+
+            function showMenu() {
+                topMenu.setAttribute("style", "display: block;");
+                console.log("showMenu");
+            }
+
+            function hideMenu() {
+                topMenu.setAttribute("style", "");
+                console.log("hideMenu");
+            }
+        </script>
+        <script src="scripts/clientValidate.js"></script>
+    </head>
+    <body>
+        <div class="menu_panel">
+            <div class="main_wrapper">
+                <ul id="topMenu">
+                    <a href="index.html"><li>Index</li></a>
+                    <a href="news.html"><li>News</li></a>
+                    <a href="gallery.html"><li>Gallery</li></a>
+                    <a href="feedback.html"><li id="currentSection">Feedback</li></a>
+                </ul>
+                <div class="hamburger_area" id="topMenuHamburger">
+                    <div class="hamburger_button">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main_wrapper">
+            <div class="article_wrapper">
+                <div class="content_widget">
+                    <h2>Добавить новую запись</h2>
+                    <form method="POST">
+                        <p>User Name:<br> 
+                        <input type="text" name="user_name" size="40" class="textbox" />
+                        <span class="error" id="username_errortext"></span>
+                        </p>
+                        <p>E-mail: <br> 
+                        <input type="text" name="email" size="40" class="textbox" />
+                        <span class="error" id="email_errortext"></span>
+                        </p>
+                        <p>Homepage: <br> 
+                        <input type="text" name="homepage" size="40" class="textbox" />
+                        <span class="error" id="homepage_errortext"></span>
+                        </p>
+                        <p>Text: <br> 
+                        <textarea name="message" cols="40" rows="5" class="textbox"></textarea>
+                        <span class="error" id="message_errortext"></span>
+                        </p>
+                        <input type="submit" value="Добавить" class="button" id="submit_button" />
+                        <span class="error" id="submit_errortext"></span>
+                    </form>
+                </div>
+            </div>
+            <div class="sidebar_wrapper">
+                <div class="content_widget">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu ligula sem. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse fermentum ligula enim, ac finibus velit dapibus in. Nulla venenatis eget ligula ac hendrerit. Nunc ullamcorper est sed maximus vehicula. Vestibulum magna quam, finibus vel lectus at, efficitur faucibus dui. Etiam posuere luctus orci id hendrerit. Nulla facilisi.
+                    </p>
+                    <p>
+                            In sit amet venenatis metus, id porttitor orci. Praesent lorem quam, suscipit ut diam id, rhoncus pulvinar neque. Quisque ullamcorper enim a rutrum venenatis. Nam vel felis dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien eros, egestas eget tristique et, malesuada ac turpis. Sed tincidunt nisi sit amet turpis bibendum, vitae ultrices est pretium. Etiam turpis nibh, viverra a enim eu, vulputate mattis nisi. Sed vehicula nisi pulvinar, iaculis mauris eget, vulputate mi. Maecenas et facilisis sapien. Nulla finibus egestas felis quis sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in turpis id mi fermentum porta. Integer scelerisque augue a leo ullamcorper consequat. Donec at lobortis tortor, nec ornare dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="menu_panel">
+            <div class="main_wrapper">
+                Лукин Александр, ИТ-11 МО. 2018
+            </div>
+        </div>
+    </body>
+</html>

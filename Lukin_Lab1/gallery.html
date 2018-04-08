@@ -1,0 +1,194 @@
+<!doctype HTML>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Gallery - LOO-WORLDS</title>
+        <link rel="stylesheet" href="style/style.css" />
+        <script>
+            window.onload = function() {
+            var topMenu = document.getElementById("topMenu");
+            
+            };
+
+            document.onclick = function(event) {
+                var target = event.target;
+
+                while (target != document) {
+                    if(target.id === "topMenuHamburger") {
+                        showMenu();
+                        return
+                    } else {
+                        target = target.parentNode;
+                    }
+                }
+                hideMenu();
+            }
+
+            function showMenu() {
+                topMenu.setAttribute("style", "display: block;");
+                console.log("showMenu");
+            }
+
+            function hideMenu() {
+                topMenu.setAttribute("style", "");
+                console.log("hideMenu");
+            }
+        </script>
+        <script>
+            var pages, currentPage, currentPageNum, paginator;
+                window.onload = function() {
+                    pages = document.getElementsByClassName("comic-page");
+                    if(pages.length > 0) {
+                        var comicParams = new URLSearchParams(window.location.search);
+                        var comicKeys = Array.from(comicParams.keys());
+                        var comicValues = Array.from(comicParams.values());
+                        var paramsIndex = comicKeys.indexOf("page");
+                        var pageIndex = parseInt(comicValues[paramsIndex]);
+        
+                        document.getElementsByClassName("comic-controls")[0].innerHTML = 
+                        '<a onclick="setPage(currentPageNum - 1);" href="#comic-page" style="width: 15%; display: inline-block;">Previous</a>' +
+                        '<span class="comic-paginator" style="width: 70%; display: inline-block; text-align: center;"></span>' + 
+                        '<a onclick="setPage(currentPageNum + 1);" href="#comic-page" style="width: 15%; display: inline-block; text-align: right;">Next</a>';
+                        paginator = document.getElementsByClassName("comic-paginator")[0];
+                        document.getElementsByClassName("comic-allpages")[0].innerHTML = allPages();
+                        for(var i = 0; i<pages.length; i++) {
+                            pages[i].hidden = true;
+                        }
+        
+                        if(paramsIndex == -1 || pageIndex < 0 || pageIndex > pages.length || isNaN(pageIndex)) {
+                            pages[0].hidden = false;
+                            currentPage = pages[0];
+                            currentPageNum = 0;
+                            paginatorUpdate();
+                        } else {
+                            pages[pageIndex - 1].hidden = false;
+                            currentPage = pages[pageIndex - 1];
+                            currentPageNum = pageIndex - 1;
+                            paginatorUpdate();
+                        }
+        
+                        document.getElementById("comic-container").onclick = function(event) {
+                            var target = event.target;
+                            if(target.className == "comic-page") {
+                                setPage(currentPageNum + 1);
+                            }
+                        }
+        
+                        document.onkeydown = function(event) {
+                            if(event.keyCode == 32) {
+                                return false;
+                            }
+                        }
+        
+                        document.onkeypress = function(event) {
+                            if(event.keyCode == 32) {
+                                return false;
+                            }
+                        }
+        
+                        document.onkeyup = function(event) {
+                            if(event.keyCode == 39) {
+                                setPage(currentPageNum + 1);
+                                document.getElementById("comic-page").scrollIntoView();
+                            }
+                            if(event.keyCode == 37) {
+                                setPage(currentPageNum - 1);
+                                document.getElementById("comic-page").scrollIntoView();
+                            }
+                            if(event.keyCode == 32) {
+                                setPage(currentPageNum + 1);
+                                document.getElementById("comic-page").scrollIntoView();
+                            }
+                        }
+                    }
+                }
+        
+                function setPage(pageNum) {
+                    if(pageNum < 0 || pageNum >= pages.length) {
+                        return;
+                    }
+                    currentPage.hidden = true;
+                    currentPage = pages[pageNum];
+                    currentPageNum = pageNum;
+                    currentPage.hidden = false;
+                    paginatorUpdate();
+                }
+        
+                function paginatorUpdate() {
+                    paginator.innerHTML = (currentPageNum + 1) + " / " + pages.length;
+                }
+        
+                function allPages() {
+                    let result = "";
+                    for(let i = 0; i < pages.length; i++) {
+                        result += ('<a href = "#comic-page" onclick="setPage(' + i + ')">' + '<img style="object-fit:cover;" width="80px" height="80px" src="' + pages[i].src + '"></img></a> ')
+                    }
+                    return result;
+                }
+        </script>
+    </head>
+    <body>
+        <div class="menu_panel">
+            <div class="main_wrapper">
+                <ul id="topMenu">
+                    <a href="index.html"><li>Index</li></a>
+                    <a href="news.html"><li>News</li></a>
+                    <a href="gallery.html"><li id="currentSection">Gallery</li></a>
+                    <a href="feedback.html"><li>Feedback</li></a>
+                </ul>
+                <div class="hamburger_area" id="topMenuHamburger">
+                    <div class="hamburger_button">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main_wrapper">
+            <div class="article_wrapper">
+                <div class="content_widget">
+                    <h1>WUST</h1>
+                    <div id="comic-container">
+                        <div id="comic-page"></div>
+                        <a href="#comic-page">
+                            <img src="media\gallery\wust\620_2015-04-12_00001.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00002.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00003.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00004.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00005.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00006.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00007.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00008.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00009.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-04-12_00010.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-10-04_00003.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-10-04_00004.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-10-04_00005.png" width="100%" class="comic-page"/>
+                            <img src="media\gallery\wust\620_2015-10-04_00006.png" width="100%" class="comic-page"/>
+                        </a>
+                        <div class="comic-controls"></div>
+                        <p style="text-align: center;">
+                        Для перехода на следующую страницу нажмите на изображение или используйте клавишу "пробел" 
+                        <br/>
+                        Вы также можете использовать клавиши со стрелками для навигации.
+                        </p>
+                        <div class="comic-allpages" style="text-align: center;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar_wrapper">
+                <div class="content_widget">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eu ligula sem. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse fermentum ligula enim, ac finibus velit dapibus in. Nulla venenatis eget ligula ac hendrerit. Nunc ullamcorper est sed maximus vehicula. Vestibulum magna quam, finibus vel lectus at, efficitur faucibus dui. Etiam posuere luctus orci id hendrerit. Nulla facilisi.
+                    </p>
+                    <p>
+                            In sit amet venenatis metus, id porttitor orci. Praesent lorem quam, suscipit ut diam id, rhoncus pulvinar neque. Quisque ullamcorper enim a rutrum venenatis. Nam vel felis dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur sapien eros, egestas eget tristique et, malesuada ac turpis. Sed tincidunt nisi sit amet turpis bibendum, vitae ultrices est pretium. Etiam turpis nibh, viverra a enim eu, vulputate mattis nisi. Sed vehicula nisi pulvinar, iaculis mauris eget, vulputate mi. Maecenas et facilisis sapien. Nulla finibus egestas felis quis sodales. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in turpis id mi fermentum porta. Integer scelerisque augue a leo ullamcorper consequat. Donec at lobortis tortor, nec ornare dui. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="menu_panel">
+            <div class="main_wrapper">
+                Лукин Александр, ИТ-11 МО. 2018
+            </div>
+        </div>
+    </body>
+</html>
